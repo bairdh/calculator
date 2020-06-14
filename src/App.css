@@ -1,38 +1,338 @@
-.App {
-  text-align: center;
+html {
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html,
+body {
+    margin: 0;
+    padding: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
 }
 
-.App-link {
-  color: #61dafb;
+button {
+    border: none;
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button:focus,
+button:active {
+    outline: none;
+}
+
+.keyboardPress {
+    opacity: 0.9;
+    background: linear-gradient(to bottom, #d3d4d6 0%, #cdced1 100%);
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    margin-bottom: 2vh;
+}
+
+#l-main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.calc {
+    background: lightgray;
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: column;
+}
+
+.calc-display {
+    background: #202020;
+    color: #fff;
+    flex-grow: 0.4;
+    font-size: 20vw;
+    position: relative;
+}
+
+.calc-display .content {
+    bottom: 0.5vw;
+    position: absolute;
+    right: 4vw;
+    transform-origin: right bottom;
+}
+
+.calc-buttons {
+    background: #000;
+    border: 0.8vw solid #000;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.calc-buttons > button {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    color: #000;
+    flex-basis: 25%;
+    font-size: 11vw;
+    font-weight: 100;
+    transition: opacity 0.6s;
+}
+
+.calc-buttons > button:active,
+.calc-buttons > button.is-active {
+    opacity: 0.9;
+    transition: opacity 0s;
+}
+
+.calc-buttons #zero-button {
+    flex-basis: 50%;
+}
+
+#clear-button,
+#change-sign-button,
+#percent-button {
+    background: linear-gradient(to bottom, #cacbcc 0%, #c8cacb 100%);
+    border-right: 0.5px solid #000;
+    border-bottom: 0.5px solid #000;
+    font-size: 8vw;
+}
+
+#change-sign-button-minus {
+    font-size: 10vw;
+    line-height: 0;
+    margin-left: -1.5vw;
+}
+
+#change-sign-button-plus {
+    margin-right: -1.5vw;
+}
+
+#seven-button,
+#eight-button,
+#nine-button {
+    background: linear-gradient(to bottom, #d7d8da 0%, #d2d3d5 100%);
+    border-right: 0.5px solid #000;
+    border-bottom: 0.5px solid #000;
+}
+
+#four-button,
+#five-button,
+#six-button {
+    background: linear-gradient(to bottom, #d3d4d6 0%, #cdced1 100%);
+    border-right: 0.5px solid #000;
+    border-bottom: 0.5px solid #000;
+}
+
+#one-button,
+#two-button,
+#three-button {
+    background: linear-gradient(to bottom, #cecfd1 0%, #c8cacc 100%);
+    border-right: 0.5px solid #000;
+    border-bottom: 0.5px solid #000;
+}
+
+#zero-button,
+#decimal-button {
+    background: linear-gradient(to bottom, #c8c9cc 0%, #c3c4c7 100%);
+    border-right: 0.5px solid #000;
+}
+
+#zero-button {
+    padding-left: 9.5vw;
+    text-align: left;
+}
+
+#decimal-button {
+    font-size: 22vw;
+    font-weight: 300;
+    line-height: 0;
+    padding-bottom: 7.5vw;
+}
+
+.calc-buttons .calc-buttons-operation,
+#equals-button {
+    color: #fff;
+    font-size: 15vw;
+    font-weight: 300;
+}
+
+.calc-buttons-operation.is-active-operation {
+    box-shadow: 0.4vw 0 0 0 #000 inset, 0 0.4vw 0 0 #000 inset, 0 -0.4vw 0 0 #000 inset;
+}
+
+#divide-button.is-active-operation {
+    box-shadow: 0 -0.4vw 0 0 #000 inset, 0.4vw 0 0 0 #000 inset;
+}
+
+#divide-button {
+    background: linear-gradient(to bottom, #f89312 0%, #f89212 100%);
+    border-bottom: 0.5px solid #000;
+}
+
+#multiply-button {
+    background: linear-gradient(to bottom, #f89112 0%, #f78c11 100%);
+    border-bottom: 0.5px solid #000;
+    padding-bottom: 2vw;
+}
+
+#subtract-button {
+    background: linear-gradient(to bottom, #f78d11 0%, #f68610 100%);
+    border-bottom: 0.5px solid #000;
+    font-size: 32vw;
+    font-weight: 100;
+    line-height: 0;
+}
+
+#add-button {
+    background: linear-gradient(to bottom, #f68710 0%, #f57f0f 100%);
+    border-bottom: 0.5px solid #000;
+    padding-bottom: 1vw;
+}
+
+#equals-button {
+    background: linear-gradient(to bottom, #f58010 0%, #f58010 100%);
+    font-size: 17vw;
+}
+
+.author-info {
+    height: 10vh;
+    margin-top: 3vh;
+    text-align: center;
+}
+
+.social-link {
+    color: #ff9f5d;
+    font-weight: 300;
+}
+
+.social-link:hover {
+    color: #ff7a00;
+}
+
+@media (min-width: 376px) {
+    #l-main {
+        margin: 20px auto 0;
+        height: 667px;
+        width: 375px;
+    }
+
+    .calc-display {
+        font-size: 75px;
+    }
+
+    .calc-display .content {
+        bottom: 2px;
+        right: 15px;
+    }
+
+    .calc-buttons {
+        border: 2px solid #000;
+    }
+
+    .calc-buttons > button {
+        font-size: 41px;
+    }
+
+    #clear-button,
+    #change-sign-button,
+    #percent-button {
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+        font-size: 30px;
+    }
+
+    #seven-button,
+    #eight-button,
+    #nine-button {
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+    }
+
+    #four-button,
+    #five-button,
+    #six-button {
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+    }
+
+    #one-button,
+    #two-button,
+    #three-button {
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+    }
+
+    #zero-button,
+    #decimal-button {
+        border-right: 1px solid #000;
+    }
+
+    #zero-button {
+        padding-left: 36px;
+    }
+
+    #decimal-button {
+        font-size: 82px;
+        padding-bottom: 28px;
+    }
+
+    #divide-button {
+        border-bottom: 1px solid #000;
+    }
+
+    #change-sign-button-minus {
+        font-size: 38px;
+        margin-left: -6px;
+    }
+
+    #change-sign-button-plus {
+        margin-right: -6px;
+    }
+
+    .calc-buttons .calc-buttons-operation,
+    #equals-button {
+        font-size: 56px;
+    }
+
+    .calc-buttons-operation.is-active-operation {
+        box-shadow: 1px 0 0 0 #000 inset, 0 1px 0 0 #000 inset, 0 -1px 0 0 #000 inset;
+    }
+
+    #divide-button.is-active-operation {
+        box-shadow: 0 -1px 0 0 #000 inset, 1px 0 0 0 #000 inset;
+    }
+
+    #multiply-button {
+        border-bottom: 1px solid #000;
+        padding-bottom: 7px;
+    }
+
+    #subtract-button {
+        border-bottom: 1px solid #000;
+        font-size: 120px;
+    }
+
+    #add-button {
+        border-bottom: 1px solid #000;
+        padding-bottom: 4px;
+    }
+
+    #equals-button {
+        font-size: 63px;
+    }
+
+    .author-info {
+        height: 38px;
+    }
 }
