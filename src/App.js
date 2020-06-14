@@ -66,7 +66,6 @@ const calculatorReducer = (state, action) => {
 
 function App() {
     const [state, dispatch] = useReducer(calculatorReducer, defaultState);
-    console.log(state);
 
     const zeroRef = useRef(null);
     const oneRef = useRef(null);
