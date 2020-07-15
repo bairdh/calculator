@@ -139,7 +139,7 @@ function App() {
                     if (shiftKey) return handleRefKeyPresses(addRef, true);
                     else return handleRefKeyPresses(equalsRef);
                 case 13:
-                    return dispatch({ type: "equals" });
+                    return handleRefKeyPresses(equalsRef);
                 case 189:
                     if (!shiftKey) return handleRefKeyPresses(subtractRef, true);
                     break;
@@ -174,7 +174,9 @@ function App() {
             <div id="l-main">
                 <div className="calc">
                     <div className="calc-display">
-                        <div className="content">{result || savedVal || 0}</div>
+                        <div className="content" data-testid="result">
+                            {result || savedVal || 0}
+                        </div>
                     </div>
                     <div className="calc-buttons">
                         <button
